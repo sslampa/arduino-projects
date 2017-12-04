@@ -5,13 +5,9 @@ const int outPin3 = 12;
 const int outPin4 = 13;
 
 int buttonState1 = LOW;
-int b1[1] = {1013};
 int buttonState2 = LOW;
-int b2[2] = {1003, 1004};
 int buttonState3 = LOW;
-int b3[3] = {976, 977, 978};
 int buttonState4 = LOW;
-int b4[3] = {943, 944, 945};
 
 int buttonState;
 int lastButtonState;
@@ -32,21 +28,21 @@ void loop() {
   int reading = analogRead(inputPin);
   Serial.println(reading);
 
-  if (inArray(b1, 1, reading)) {
+  if (reading >= 1010) {
     buttonState1 = !buttonState1;    
     digitalWrite(outPin1, buttonState1);
-  } else if (inArray(b2, 2, reading)) {
+  } else if (reading >= 1000 && reading < 1010) {
     buttonState2 = !buttonState2;    
     digitalWrite(outPin2, buttonState2);
-  } else if (inArray(b3, 3, reading)) {
+  } else if (reading >= 970 && reading < 1000) {
     buttonState3 = !buttonState3;    
     digitalWrite(outPin3, buttonState3);
-  } else if (inArray(b4, 3, reading)) {
+  } else if (reading >= 940 && reading < 970) {
     buttonState4 = !buttonState4;
     digitalWrite(outPin4, buttonState4);
   }
   
-  delay(111);
+  delay(110);
 }
 
 bool inArray(int a[], int num, int value) {
